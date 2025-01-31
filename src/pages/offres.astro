@@ -9,24 +9,53 @@ const offres = await getOffres();
 
 <Base titre="Accueil">
   <h1 class="my-10 text-center font-bold text-7xl">Offres</h1>
-  <div x-data="{ showFavorites: false }">
-    <button
-      @click="showFavorites = !showFavorites"
-      class="bg-fuchsia-100 text-black font-bold py-2 px-4 rounded-lg border-2 border-fuchsia-800 mx-5"
-    >
-      <span x-show="!showFavorites">Afficher les favoris</span>
-      <span x-show="showFavorites">Afficher tout</span>
-    </button>
 
-    <div x-show="!showFavorites" class="grid grid-cols-1 lg:grid-cols-3">
-      {offres.map((offre) => <Cards {...offre} />)}
+  <div x-data="{ showFavorites: false, viewMode: 'grid' }">
+    <div class="flex space-x-4 my-5">
+      <button
+        @click="showFavorites = !showFavorites"
+        class="bg-fuchsia-100 text-black font-bold py-2 px-4 rounded-lg border-2 border-fuchsia-800 mx-5"
+      >
+        <span x-show="!showFavorites">Afficher les favoris</span>
+        <span x-show="showFavorites">Afficher tout</span>
+      </button>
+
+      <div class="flex space-x-4 my-5">
+        <button
+          @click="viewMode = 'grid'"
+          :class="viewMode === 'grid' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'"
+          class="py-2 px-4 rounded-lg border-2 border-blue-800"
+        >
+          Vue Grille
+        </button>
+        <button
+          @click="viewMode = 'list'"
+          :class="viewMode === 'list' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'"
+          class="py-2 px-4 rounded-lg border-2 border-blue-800"
+        >
+          Vue Liste
+        </button>
+      </div>
     </div>
-    <div x-show="showFavorites" class="grid grid-cols-1 lg:grid-cols-3">
-      {
-        offres
-          .filter((offre) => offre.favori)
-          .map((offre) => <Cards {...offre} />)
-      }
+
+      <!-- Conteneur avec affichage dynamique -->
+      <div
+        x-show="!showFavorites"
+        :class="viewMode === 'grid' ? 'grid grid-cols-1 lg:grid-cols-3 gap-4' : 'flex flex-col space-y-4'"
+      >
+        {offres.map((offre) => <Cards {...offre} />)}
+      </div>
+
+      <div
+        x-show="showFavorites"
+        :class="viewMode === 'grid' ? 'grid grid-cols-1 lg:grid-cols-3 gap-4' : 'flex flex-col space-y-4'"
+      >
+        {
+          offres
+            .filter((offre) => offre.favori)
+            .map((offre) => <Cards {...offre} />)
+        }
+      </div>
     </div>
   </div>
 </Base>
