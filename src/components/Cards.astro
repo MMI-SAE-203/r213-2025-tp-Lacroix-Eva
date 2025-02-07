@@ -1,12 +1,15 @@
 ---
-const { ... offre } = Astro.props;
+const { ...offre } = Astro.props;
 ---
 
-<div class=" mx-5 my-10">
+<div class="mx-5 my-10">
   <div class="max-w-sm rounded-lg overflow-hidden shadow-lg bg-amber-100 p-4">
     <div class="py-2">
-      <h2 class="text-center text-3xl font-bold text-black mb-5">{offre.nomMaison}</h2>
-      <img class="w-full rounded-lg" src={offre.img}/>
+      <h2 class="text-center text-3xl font-bold text-black mb-5">
+        {offre.nomMaison}
+      </h2>
+      <img class="w-full rounded-lg" src={offre.img} />
+      <a href={`/offres/${offre.id}`}>Voir plus</a>
     </div>
   </div>
 </div>
