@@ -12,8 +12,8 @@ if (!offre) {
 ---
 
 <Base titre={offre.nomMaison}>
-  <h2>{offre.nomMaison}</h2>
-  <ul>
+  <h2 class="font-bold my-4 text-lg">{offre.nomMaison}</h2>
+  <ul class="flex flex-col space-y-4 mx-2">
     <li set:html={offre.adresse} />
     <li>{offre.prix} $</li>
     <li>{offre.surface} m2</li>

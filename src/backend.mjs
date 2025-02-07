@@ -38,3 +38,13 @@ export async function getOffresBySurface(s) {
     });
     return maisonSurface;
 }
+
+export async function getOffresByPrix(p) {
+    const maisonPrix = await pb.collection('Agence').getFullList({
+        filter: `prix > ${p}`,
+    });
+    maisonPrix.forEach((maison) => {
+        maison.img = pb.files.getURL(maison, maison.images);
+    });
+    return maisonPrix;
+}

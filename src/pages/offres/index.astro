@@ -9,7 +9,10 @@ const offres = await getOffres();
 
 <Base titre="Accueil">
   <h1 class="my-10 text-center font-bold text-7xl">Offres</h1>
-  <a href="/offres/surface/80">Voir les offres de plus de 80m²</a>
+  <ul class="flex justify-center space-x-4">
+      <li> <a class="text-black px-4 rounded-lg border-2 border-fuchsia-800 mx-5" href="/offres/surface/80">Voir les offres de plus de 80m² <a/></li>
+      <li> <a class="text-black px-4 rounded-lg border-2 border-fuchsia-800 mx-5" href="/offres/prix/250000">Voir les offres de moins de 250 000$ <a/></li>
+    </ul>
   <div x-data="{ showFavorites: false, viewMode: 'grid' }">
     <div class="flex space-x-4 my-5">
       <button
