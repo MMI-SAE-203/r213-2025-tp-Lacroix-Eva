@@ -11,21 +11,63 @@ if (Astro.request.method === "POST") {
 ---
 
 <Base>
-  <h1 class="text-lg">Ajouter une offre</h1>
-  <p>{message}</p>
-  <form action="/offres/add" method="POST" enctype="multipart/form-data">
+  <h1 class="text-4xl font-bold text-center text-blue-900 mt-6">
+    Ajouter une offre
+  </h1>
+
+  <form
+    action="/offres/add"
+    method="POST"
+    enctype="multipart/form-data"
+    class="bg-blue-100 p-6 rounded-xl max-w-lg mx-auto border-2 border-blue-300 flex flex-col space-y-4 mt-10"
+  >
     <input
       type="text"
       name="nomMaison"
       placeholder="Nom de la maison"
       required
-      class="w-full mt-2 p-2 border border-gray-300 rounded-md"
+      class="p-3 border border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-400 bg-white"
     />
-    <input type="number" name="prix" placeholder="Prix" />
-    <input type="number" name="nbSdb" placeholder="Nombre de salles de bain" />
-    <input type="number" name="nbChambre" placeholder="Nombre de chambres" />
-    <input type="number" name="surface" placeholder="Superficie" />
-    <input type="file" name="images" />
-    <button type="submit">Ajouter</button>
+
+    <input
+      type="number"
+      name="prix"
+      placeholder="Prix (€)"
+      class="p-3 border border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-400 bg-white"
+    />
+
+    <input
+      type="number"
+      name="nbSdb"
+      placeholder="Nombre de salles de bain"
+      class="p-3 border border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-400 bg-white"
+    />
+
+    <input
+      type="number"
+      name="nbChambre"
+      placeholder="Nombre de chambres"
+      class="p-3 border border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-400 bg-white"
+    />
+
+    <input
+      type="number"
+      name="surface"
+      placeholder="Superficie (m²)"
+      class="p-3 border border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-400 bg-white"
+    />
+
+    <input
+      type="file"
+      name="images"
+      class="p-3 border border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-400 bg-white"
+    />
+
+    <button
+      type="submit"
+      class="bg-blue-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-600 transition"
+      >Ajouter</button
+    >
   </form>
+  <p class="text-center text-red-500 my-3">{message}</p>
 </Base>
