@@ -39,7 +39,7 @@ if (Astro.request.method === "POST") {
   </form>
 
   <div x-data="{ showFavorites: false, viewMode: 'grid' }">
-    <div class="flex space-x-4 my-5">
+    <div class="flex my-5">
       <button
         @click="showFavorites = !showFavorites"
         class="bg-fuchsia-100 text-black font-bold px-4 rounded-lg border-2 border-fuchsia-800 mx-5 hover:bg-red-300 transition"
@@ -48,26 +48,28 @@ if (Astro.request.method === "POST") {
         <span x-show="showFavorites">Afficher tout</span>
       </button>
 
-      <div class="flex space-x-4 my-5">
-        <button
-          @click="viewMode = 'grid'"
-          :class="viewMode === 'grid' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'"
-          class="py-2 px-4 rounded-lg border-2 border-blue-800"
-        >
-          Vue Grille
-        </button>
-        <button
-          @click="viewMode = 'list'"
-          :class="viewMode === 'list' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'"
-          class="py-2 px-4 rounded-lg border-2 border-blue-800"
-        >
-          Vue Liste
-        </button>
-      </div>
+      <a
+        class="bg-green-200 text-black font-bold rounded-lg border-2 border-green-800 hover:bg-green-400 transition py-2 px-4"
+        href="../offres/add">Ajouter une offre</a
+      >
     </div>
-    <a
-      href="../offres/add">Ajouter une offre</a
-    >
+    <div class="space-x-4 mx-5">
+      <button
+        @click="viewMode = 'grid'"
+        :class="viewMode === 'grid' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'"
+        class="py-2 px-4 rounded-lg border-2 border-blue-800"
+      >
+        Vue Grille
+      </button>
+
+      <button
+        @click="viewMode = 'list'"
+        :class="viewMode === 'list' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'"
+        class="py-2 px-4 rounded-lg border-2 border-blue-800"
+      >
+        Vue Liste
+      </button>
+    </div>
 
     <div
       x-show="!showFavorites"
