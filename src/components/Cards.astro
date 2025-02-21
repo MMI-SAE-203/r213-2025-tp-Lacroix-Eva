@@ -2,8 +2,30 @@
 const { ...offre } = Astro.props;
 ---
 
-<div class="mx-5 my-10">
-  <div class="max-w-sm rounded-lg overflow-hidden shadow-lg bg-amber-100 p-4">
+<script>
+  //@ts-nocheck
+  import { setFavori } from "../backend";
+  window.setFavori = setFavori;
+</script>
+
+<div
+  class="mx-5 my-10"
+  x-data={`{favori: ${offre.favori}, clickFavori() { this.favori = !this.favori; setFavori(${JSON.stringify(offre)}); }}`}
+>
+  <div
+    class="relative max-w-sm rounded-lg overflow-hidden shadow-lg bg-amber-100 p-4"
+  >
+    <button
+      class="absolute top-3 right-3 bg-white p-1 rounded-full shadow-md hover:scale-110 transition"
+      @click="clickFavori()"
+    >
+      <img
+        :src="favori ? '/favorite.png' : '/favorite_filled.png'"
+        alt="Favorite Icon"
+        class="w-8 h-8"
+      />
+    </button>
+
     <div class="py-2">
       <h2 class="text-center text-3xl font-bold text-black mb-5">
         {offre.nomMaison}

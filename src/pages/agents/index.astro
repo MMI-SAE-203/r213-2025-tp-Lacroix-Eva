@@ -1,0 +1,75 @@
+---
+import { getAgents } from "../../backend.mjs";
+import Base from "../../layouts/Base.astro";
+
+const agents = await getAgents();
+---
+
+<Base>
+  {
+    agents?.map((agent, index) => {
+      const colors = [
+        {
+          bg: "bg-blue-100",
+          border: "border-blue-300",
+          text: "text-blue-700",
+          button: "bg-blue-500 hover:bg-blue-600",
+        },
+        {
+          bg: "bg-pink-100",
+          border: "border-pink-300",
+          text: "text-pink-700",
+          button: "bg-pink-500 hover:bg-pink-600",
+        },
+        {
+          bg: "bg-purple-100",
+          border: "border-purple-300",
+          text: "text-purple-700",
+          button: "bg-purple-500 hover:bg-purple-600",
+        },
+        {
+          bg: "bg-cyan-100",
+          border: "border-cyan-300",
+          text: "text-cyan-700",
+          button: "bg-cyan-500 hover:bg-cyan-600",
+        },
+      ];
+
+      const color = colors[index % colors.length];
+
+      return (
+        <div
+          class={`relative duration-300 hover:scale-105 border ${color.border} shadow-lg hover:shadow-xl overflow-hidden rounded-xl h-56 w-72 ${color.bg} p-6 m-6 flex flex-col justify-between`}
+        >
+          <div class="absolute top-3 right-3 opacity-40">
+            <svg
+              class="w-10 h-10 fill-current"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 64 64"
+            >
+              <path
+                data-name="layer1"
+                d="M 50.4 51 C 40.5 49.1 40 46 40 44 v -1.2 a 18.9 18.9 0 0 0 5.7 -8.8 h 0.1 c 3 0 3.8 -6.3 3.8 -7.3 s 0.1 -4.7 -3 -4.7 C 53 4 30 0 22.3 6 c -5.4 0 -5.9 8 -3.9 16 c -3.1 0 -3 3.8 -3 4.7 s 0.7 7.3 3.8 7.3 c 1 3.6 2.3 6.9 4.7 9 v 1.2 c 0 2 0.5 5 -9.5 6.8 S 2 62 2 62 h 60 a 14.6 14.6 0 0 0 -11.6 -11 z"
+                stroke-miterlimit="10"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
+
+          <div class={`${color.text}`}>
+            <span class="font-bold text-xl block">
+              {agent.prenom} {agent.nom}
+            </span>
+            <p class="text-sm">{agent.email}</p>
+          </div>
+
+          <button
+            class={`${color.button} text-white font-semibold px-4 py-2 rounded-lg transition w-full`}
+          >
+            <a href={`/agents/${agent.id}`}>Voir les offres</a>
+          </button>
+        </div>
+      );
+    })
+  }
+</Base>
